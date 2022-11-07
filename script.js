@@ -1,48 +1,40 @@
-/* Computer randomizes between rock, paper and scissors.
-Ask player to input rock, paper or scissors.
-If rock against scissors, rock wins
-if rock against paper, paper wins
-if paper against scissors, scissors wins
-Show if player or computer won */
+// Give the computer a random choice between rock, paper and scissors
+// Ask player to input choice
+// Compare player and computer choice
+// Declare winner
 
-for (let i = 0; i < 5; i++) { // loop until 5 rounds are played
-
-
-    let computerChoice = Math.random(); // random between 0 and 1
-    if (computerChoice < 0.34) { // 3 choices, so ~ 100 / 3
-        computerChoice = "rock"
-    }
-    else if (computerChoice <= 0.67) {
-        computerChoice = "paper"
-    }
-    else {
-        computerChoice = "scissors"
-    }
-
-console.log("Computer plays: " + computerChoice) // Displays computer's choice
-
-let playerChoice = prompt("Rock, paper, or scissors?").toLowerCase() // Asks player's choice
-
-
-
-console.log("Player plays: " + playerChoice) // Displays player's choice
-
-function playRound (computerChoice, playerChoice) { // A round of rock, paper, scissors
-
-    if (playerChoice === computerChoice) {
-        return "It's a draw.."
-    }
-    else if (playerChoice === "rock" && computerChoice === "scissors") {
-        return "Player wins!"
-    }
-    else if (playerChoice === "scissors" && computerChoice === "paper") {
-        return "Player wins!"
-    }
-    else if (playerChoice === "paper" && computerChoice === "rock") {
-        return "Player wins!"
-    }
-    else { return "Computer wins.."}
+function getComputerChoice() {
+    const arrayOfChoices = ['rock', 'paper', 'scissors']
+    const randomNum = Math.floor(Math.random() * 3)
+    const compChoice = arrayOfChoices[randomNum]
+    return compChoice
 }
-console.log(playRound(computerChoice, playerChoice)) // Show result per round
 
+function playRound(playerSelection, computerSelection) {
+    if (playerSelection === computerSelection) {
+        return "It's a tie"
+    }
+    else if (playerSelection === 'rock' && computerSelection === 'scissors') {
+        return 'Player wins! Rock breaks scissors'
+    }
+    else if (playerSelection === 'rock' && computerSelection === 'paper') {
+        return 'Computer wins! Paper covers rock'
+    }
+    else if (playerSelection === 'paper' && computerSelection === 'rock') {
+        return 'Player wins! Paper covers rock'
+    }
+    else if (playerSelection === 'paper' && computerSelection === 'scissors') {
+        return 'Computer wins! Scissors cut paper'
+    }
+    else if (playerSelection === 'scissors' && computerSelection === 'rock') {
+        return 'Computer wins! Rock breaks scissors'
+    }
+    else if (playerSelection === 'scissors' && computerSelection === 'paper') {
+        return 'Player wins! scissors cut paper'
+    }
 }
+
+let playerSelection = "rock"
+let computerSelection = getComputerChoice()
+
+console.log(playRound(playerSelection, computerSelection))
